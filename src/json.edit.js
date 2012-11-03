@@ -3,7 +3,7 @@
     "use strict";
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['jquery', 'jquery.lego', 'json.schema', 'nsgen', 'json'], function ($, legojs, JsonSchema, NsGen, JSON) {
+        define(['jquery', 'jquery.lego', './json.schema', './nsgen'], function ($, legojs, JsonSchema, NsGen) {
             // Also create a global in case some scripts
             // that are loaded still are looking for
             // a global even when an AMD loader is in use.
