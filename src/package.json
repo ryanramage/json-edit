@@ -6,8 +6,16 @@
   "main": "json.edit.js",
   "jam": {
       "dependencies": {
-        "jquery": ">1.4.2"
-      }
+        "jquery": ">1.4.2",
+        "jquery.lego" : ">=0.0.1"
+      },
+      "include" : [
+        "json.edit.js",
+        "json.schema.js",
+        "nsgen.js",
+        "json.edit.bootstrap.css",
+        "../../css/json.edit.css"
+      ]
   },
   "repository": "git://github.com/marianoguerra/json-edit.git",
   "homepage": "https://github.com/marianoguerra/json-edit",
