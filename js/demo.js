@@ -1,4 +1,4 @@
-/*global require */
+/*global require window*/
 require.config({
     baseUrl: "js/",
     paths: {
@@ -29,10 +29,14 @@ require.config({
         "hint.squim": "../src/addons/squim",
         "hint.tabarray": "../src/addons/tabarray",
         "hint.summarylist": "../src/addons/summarylist/addon",
+        "hint.adsafe": "../src/addons/adsafe/adsafe",
+        "hint.blockly": "../src/addons/blockly/blockly",
 
         // needed by hints
         // by color hint
         "colorPicker": "../src/addons/color/picker/colorPicker",
+        // by adsafe hint
+        "jslint": "../src/addons/adsafe/lib/jslint",
 
         // by squide hint
         "squim": "http://marianoguerra.github.com/squim/src/squim",
@@ -74,7 +78,7 @@ require(["jquery", "json.edit", "demos", "ace", "jquery.lego", "prettyPrint", "j
 
         "hint.tags", "hint.autocomplete", "hint.date", "hint.color", "hint.tabs",
         "hint.password", "hint.readonly", "hint.enumlabels", "hint.squim", "hint.tabarray",
-        "hint.summarylist", "hint.textarea"],
+        "hint.summarylist", "hint.textarea", "hint.adsafe", "hint.blockly"],
 
         function ($, mJsonEdit, demos, ace, legojs, prettyPrint, JSON) {
     "use strict";
@@ -88,7 +92,7 @@ require(["jquery", "json.edit", "demos", "ace", "jquery.lego", "prettyPrint", "j
             var content,
                 data;
 
-            if (hideEditor) {
+            if (hideEditor || !ace) {
                 content = $("#" + id).text();
             } else {
                 content = editor.getSession().getDocument().getValue();
@@ -117,8 +121,8 @@ require(["jquery", "json.edit", "demos", "ace", "jquery.lego", "prettyPrint", "j
                 errors = jsonEditData.getErrors(result.result);
             }
 
-            $("#" + id + "-data").html(JSON.stringify(result.data, null, 2));
-            $("#" + id + "-validation").html(JSON.stringify(result.result, null, 2));
+            $("#" + id + "-data").text(JSON.stringify(result.data, null, 2));
+            $("#" + id + "-validation").text(JSON.stringify(result.result, null, 2));
             prettyPrint();
             console.log(errors);
         }
@@ -140,7 +144,7 @@ require(["jquery", "json.edit", "demos", "ace", "jquery.lego", "prettyPrint", "j
                             "pre": {
                                 "id": id,
                                 "class": "editor",
-                                "$childs": JSON.stringify(content, null, 2)
+                                "$childs": mJsonEdit.escape(JSON.stringify(content, null, 2))
                             }
                         }, {
                             "div": {
@@ -192,7 +196,7 @@ require(["jquery", "json.edit", "demos", "ace", "jquery.lego", "prettyPrint", "j
             }
         }));
 
-        if (!hideEditor) {
+        if (!hideEditor && ace) {
             editor = ace.edit(id);
             editor.setTheme("ace/theme/merbivore_soft");
             //editor.getSession().setMode("ace/mode/json");

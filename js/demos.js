@@ -17,6 +17,142 @@
     "use strict";
     return [
         [
+            "blockly hint in overlay (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "blockly",
+                        "je:blockly": {
+                            "basePath": "src/addons/blockly/",
+                            "overlay": true
+                        },
+                        "default": "<xml xmlns=\"http://www.w3.org/1999/xhtml\">\n  <block type=\"variables_set\" inline=\"false\" x=\"31\" y=\"42\">\n    <title name=\"VAR\">item</title>\n    <value name=\"VALUE\">\n      <block type=\"math_number\">\n        <title name=\"NUM\">0</title>\n      </block>\n    </value>\n  </block>\n</xml>"
+                    }
+                }
+            }
+        ],
+        [
+            "blockly hint (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "blockly",
+                        "je:blockly": {
+                            "basePath": "src/addons/blockly/"
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "blockly hint with default (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "blockly",
+                        "default": "<xml xmlns=\"http://www.w3.org/1999/xhtml\">\n  <block type=\"variables_set\" inline=\"false\" x=\"31\" y=\"42\">\n    <title name=\"VAR\">item</title>\n    <value name=\"VALUE\">\n      <block type=\"math_number\">\n        <title name=\"NUM\">0</title>\n      </block>\n    </value>\n  </block>\n</xml>",
+                        "je:blockly": {
+                            "basePath": "src/addons/blockly/"
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "adsafe hint (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "adsafe",
+                        "default": 'ADSAFE.lib("name", function (lib) {\n' +
+                        '    "use strict";\n' +
+                        '\n' +
+                        '    var items = [1, 2, 3];\n' +
+                        '\n' +
+                        '    return {\n' +
+                        '        handle: function () {\n' +
+                        '            return items.map(function (item) {\n' +
+                        '                return item + 1;\n' +
+                        '            });\n' +
+                        '        }\n' +
+                        '    };\n' +
+                        '});\n'
+                    }
+                }
+            }
+        ],
+        [
+            "adsafe hint wrap boilerplate option (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "adsafe",
+                        "je:adsafe": {
+                            "wrapBoilerplate": true,
+                            "args": ["foo", "bar"]
+                        },
+                        "default": 'var items = [1, 2, 3];\n' +
+                        'return items.map(function (item) {\n' +
+                        '    return item + foo - bar;\n' +
+                        '});\n'
+                    }
+                }
+            }
+        ],
+        [
+            "adsafe hint with jslint options (addon)",
+            "",
+            {
+                "order": ["code"],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "title": "Code",
+                        "je:hint": "adsafe",
+                        "je:adsafe": {
+                            "jslintOptions": {
+                                "vars": true
+                            }
+                        },
+                        "default": 'ADSAFE.lib("name", function (lib) {\n' +
+                        '    "use strict";\n' +
+                        '\n' +
+                        '    var items = [1, 2, 3];\n' +
+                        '    var items1 = [1, 2, 3];\n' +
+                        '\n' +
+                        '    return {\n' +
+                        '        handle: function () {\n' +
+                        '            return items.map(function (item) {\n' +
+                        '                return item + 1;\n' +
+                        '            });\n' +
+                        '        }\n' +
+                        '    };\n' +
+                        '});\n'
+                    }
+                }
+            }
+        ],
+        [
             "additional properties",
             "",
             {
@@ -785,6 +921,26 @@
                         "title": "Color",
                         "default": "green",
                         "enum": ["red", "green", "blue"]
+                    }
+                }
+            }
+        ],
+        [
+            "Field with integer enumerated values using enum labels (addon)",
+            "",
+            {
+                "order": ["color"],
+                "properties": {
+                    "color": {
+                        "type": "integer",
+                        "title": "Color",
+                        "je:hint": "enumlabels",
+                        "je:enumlabels": {
+                            "1": "Passion Red",
+                            "2": "Really Green",
+                            "3": "Kind of Blue"
+                        },
+                        "enum": [1,2,3]
                     }
                 }
             }
